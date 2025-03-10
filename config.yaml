@@ -1,0 +1,45 @@
+---
+all:
+    data_dir: "data/"        # Specify main data directory
+    log_dir: "logs/"         # Specify main log directory
+    datasets: ["Lee"] #["Kumar"]         # specify datasets
+    #mix_data: False	       # Specify whether you want to analyze mixed datasets
+
+
+GSE:
+    Kumar: "183904"                # Kumar GSE accession code
+
+filtering:
+    min_genes: 500         # minimal expressed genes per cell
+    max_genes: 7000        # maximal expressed genes per cell
+    min_mt_pct: 20         # minimal %-age of MT genes per cell
+
+
+clustering:
+    n_pcs: 25              # number of principal components to consider
+    n_neighbors: 20        # number of neighbors for knn graph
+    resolution: 1          # Resolution for clustering (low means less clusters)
+
+
+DEG_clusters:
+    marker_gene_method: "wilcoxon" # Method to find DEGs: ["t-test", "wilcoxon", "logreg"]
+    cluster_key: "leiden"  # key for DEG analysis ["leiden","leiden_optimal"]
+    FDR_threshold: 0.1             # Treshold for signficance of DEG
+    metric: "expression"       # metric to score subtypes: logfoldchanges,scores or expression
+    
+DEG_celltypes:
+    method: ["wilcoxon"]#['wilcoxon']#["DESeq2"]#["logreg","DESeq2","limma_voom"]
+ 
+UMAP:
+    colouring: ['celltype', 'patient_id','MAPK1','leiden','n_sdi','EPCAM','dataset']
+
+BLADE:
+   # Minor_celltypes: ["Myeloid_cell","T_cell"] # Major celltypes to take minor celltypes from for signature
+    Parameters:
+        Alpha: [1]
+        Kappa0: [1]
+        SY: 1
+        Nrep: 10   #Should be smaller than Njob
+        Nrepfinal: 1000
+        Njob: 10    #Should be bigger than Nrep
+        Ntop_DEGs: 16 #[100,200,300,400]   #Top number of DEGs to select
