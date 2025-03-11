@@ -9,5 +9,5 @@ Individual environments are automatically created for each rule when running Sna
 In the scripts folder, cluster_sc.py, sc_cf.R, and survival.R are standalone files not incorporated into the snakemake pipeline.
 1. cluster_sc.py: Classify the single cell data using state loadings from bulk data
 2. sc_cf.R: Plotting true cell fractions of the single cell atlas
-3. survival.R: Plotting the Kaplan-Meier curves of the TCGA STAD
+3. survival.R: Plotting the Kaplan-Meier curves of the TCGA STAD, enrichment analysis using Chi squared test
 
